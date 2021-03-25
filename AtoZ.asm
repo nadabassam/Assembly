@@ -1,5 +1,5 @@
 .MODEL SMALL
- .STACK 100H
+.STACK 100H
 
  .DATA
     PROMPT  DB  'The Upper Case Letters from A to Z are : $'
@@ -30,3 +30,25 @@
      INT 21H
    MAIN ENDP
  END MAIN
+
+
+OR without the String : 
+
+DOSSEG
+.MODEL SMALL
+.CODE
+
+MOV CX,26    ; counter 
+MOV DL,41h   ; A
+MOV AH,2 
+
+LOOP: 
+INT 21h
+
+INC dl
+DEC cx
+JNZ LOOP
+
+MOV ah,4ch
+INT 21h
+END
