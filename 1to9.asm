@@ -16,7 +16,7 @@
      MOV CX, 10                 ; initialize CX
 
      MOV AH, 2                    ; set output function  
-     MOV DL, 30h                  ; set DL with A
+     MOV DL, 30h                  ; set DL with 0
 
      @LOOP:                       ; loop start
        INT 21H                    ; print character
@@ -30,3 +30,23 @@
      INT 21H
    MAIN ENDP
  END MAIN
+
+OR without using String:
+
+DOSSEG
+.MODEL SMALL
+.CODE
+
+MOV CX,10            ; initialize CX
+MOV DL,30h           ; set DL with 0
+MOV AH,2
+
+L1:                  ; loop start
+INT 21h
+INC DL               ; increment DL to next ASCII character
+DEC CX               ; decrement CX
+JNZ L1               ; jump to l1 if CX is 0
+
+MOV AH,4ch
+INT 21h
+END
