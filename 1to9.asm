@@ -37,16 +37,16 @@ DOSSEG
 .MODEL SMALL
 .CODE
 
-MOV CX,10            ; initialize CX
-MOV DL,30h           ; set DL with 0
-MOV AH,2
+     MOV CX,10               ; initialize CX
+     MOV DL,30h              ; set DL with 0
+     MOV AH,2
 
-L1:                  ; loop start
-INT 21h
-INC DL               ; increment DL to next ASCII character
-DEC CX               ; decrement CX
-JNZ L1               ; jump to l1 if CX is 0
+     L1:                     ; loop start
+       INT 21h
+       INC DL               ; increment DL to next ASCII character
+       DEC CX               ; decrement CX
+       JNZ L1               ; jump to l1 if CX is 0
 
-MOV AH,4ch
-INT 21h
+     MOV AH,4ch
+     INT 21h
 END
