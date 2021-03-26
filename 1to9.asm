@@ -9,11 +9,11 @@
      MOV AX, @DATA                ; initialize DS 
      MOV DS, AX
 
-     MOV DX, OFFSET PROMPT               ; load and print PROMPT 
+     MOV DX, OFFSET PROMPT        ; load and print PROMPT 
      MOV AH, 9
      INT 21H
 
-     MOV CX, 10                 ; initialize CX
+     MOV CX, 10                   ; initialize CX
 
      MOV AH, 2                    ; set output function  
      MOV DL, 30h                  ; set DL with 0
@@ -46,9 +46,9 @@ DOSSEG
 
      L1:                     ; loop start
        INT 21h
-       INC DL               ; increment DL to next ASCII character
-       DEC CX               ; decrement CX
-       JNZ L1               ; jump to l1 if CX is 0
+       INC DL                ; increment DL to next ASCII character
+       DEC CX                ; decrement CX
+       JNZ L1                ; jump to l1 if CX is 0
 
      MOV AH,4ch
      INT 21h
