@@ -1,15 +1,15 @@
-.MODEL SMALL
+ .MODEL SMALL
  .STACK 100H
 
  .DATA
-    PROMPT  DB  'The Numbers from 1 to 9 are : $'
+    PROMPT  DB  'The Numbers from 0 to 9 are : $'
 
  .CODE
    MAIN PROC
      MOV AX, @DATA                ; initialize DS 
      MOV DS, AX
 
-     LEA DX, PROMPT               ; load and print PROMPT 
+     MOV DX, OFFSET PROMPT               ; load and print PROMPT 
      MOV AH, 9
      INT 21H
 
@@ -18,18 +18,21 @@
      MOV AH, 2                    ; set output function  
      MOV DL, 30h                  ; set DL with 0
 
-     @LOOP:                       ; loop start
+     L1:                          ; loop start
        INT 21H                    ; print character
 
        INC DL                     ; increment DL to next ASCII character
        DEC CX                     ; decrement CX
  
-     JNZ @LOOP                    ; jump to label @LOOP if CXis 0
+     JNZ L1                       ; jump to label L1 if CX is 0
 
      MOV AH, 4CH                  ; return control to DOS
      INT 21H
+     
    MAIN ENDP
  END MAIN
+ 
+
 
 OR without using String:
 
